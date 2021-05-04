@@ -86,6 +86,8 @@ When You Wanna Make A Powerfull Recon, You Should Also Look At:
 
 - Parameter Fuzzing
 - CVE Scanning
+- Subdomain Screenshot
+- IoT Search Engines Discovery
 
 ## Installation
 
