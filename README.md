@@ -55,9 +55,11 @@ When You Wanna Make A Powerfull Recon, You Should Also Look At:
 - [x] Knockpy
 - [x] github-subdomains
 
+
 - Getting The Whole Subdomain Gathered And Extract The Only Live Subdomain Using:
 
 - [x] httprobe
+
 
 - Fuzzing The Application Target Based Using:
 
@@ -65,15 +67,22 @@ When You Wanna Make A Powerfull Recon, You Should Also Look At:
 - [x] Dirsearch
 - [x] Dirb
 
+
 - Endpoints Gathering Using:
 
 - [x] Waybackurls
 - [x] github-endpoints
 
+
 - DNS Information Gathering Using:
 
 - [x] DNSMap
 - [x] DNSEnum   
+
+## What Coming In The Version 2.0.0
+
+- Parameter Fuzzing
+- CVE Scanning
 
 ## Installation
 
