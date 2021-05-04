@@ -44,6 +44,37 @@ When You Wanna Make A Powerfull Recon, You Should Also Look At:
 - [x] [Hunter.io](https://hunter.io/) -> For Target Email Searching 
 - [x] [Public-WWW](https://publicwww.com) -> For String Searching In Public Source Codes
 
+## What Did This Tool Do:
+
+- Subdomain-Gathering Using:
+
+- [x] Subfinder
+- [x] Sublist3r
+- [x] Amass
+- [x] Assetfinder
+- [x] Knockpy
+- [x] github-subdomains
+
+- Getting The Whole Subdomain Gathered And Extract The Only Live Subdomain Using:
+
+- [x] httprobe
+
+- Fuzzing The Application Target Based Using:
+
+- [x] Gobuster
+- [x] Dirsearch
+- [x] Dirb
+
+- Endpoints Gathering Using:
+
+- [x] Waybackurls
+- [x] github-endpoints
+
+- DNS Information Gathering Using:
+
+- [x] DNSMap
+- [x] DNSEnum   
+
 ## Installation
 
 Simply After Cloning The Repository By Typing :
