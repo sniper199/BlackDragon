@@ -1,4 +1,4 @@
-# Black-Dragon V 1.0.0
+# Black-Dragon V1.0.0
 An Adavnced Automation Tool For Web-Recon Developed For Linux Systems
 
 <center>
@@ -121,4 +121,5 @@ M 💕 N
 
 <hr>
 
+## GPL V3 License 
 <img src="gplv3-with-text-136x68.png">
