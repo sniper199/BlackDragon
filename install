@@ -243,7 +243,7 @@ git clone https://github.com/blechschmidt/massdns.git
 
 cd ~/BlackDragon/BD-Tools/
 
-make
+sudo make
 
 cd ~/BlackDragon/BD-Tools/
 
@@ -309,7 +309,7 @@ git clone https://gitlab.com/kalilinux/packages/dnsmap.git
 
 cd dnsmap
 
-make
+sudo make
 
 printf "\n\n\e[7m Installing DNSEnum \e[27m\n\n"
 
@@ -317,7 +317,7 @@ git clone https://gitlab.com/kalilinux/packages/dnsenum.git
 
 cd dnsenum
 
-make
+sudo make
 
 printf "\n\n\e[7m Installing gobuster \e[27m\n\n"
 
@@ -331,8 +331,8 @@ cd dirb/
 
 chmod +x configure
 
-./configure
+sudo ./configure
 
-make
+sudo make
 
 printf "\n\n\n \e[96m[Tools & Requirements Installed]\e[0m \n\n\n"
