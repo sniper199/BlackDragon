@@ -56,7 +56,7 @@ When You Wanna Make A Powerfull Recon, You Should Also Look At:
 - [x] github-subdomains
 
 
-- Getting The Whole Subdomain Gathered And Extract The Only Live Subdomain Using:
+- Getting The Whole Subdomain Gathered Then Filter The Unique Domains And Extract The Only Live Subdomain Using:
 
 - [x] httprobe
 
