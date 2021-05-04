@@ -121,5 +121,5 @@ M 💕 N
 
 <hr>
 
-## GPL V3 License 
+## [GPL V3 License](https://github.com/Cyber-Guy1/BlackDragon/blob/main/LICENSE.md) 
 <img src="gplv3-with-text-136x68.png">
