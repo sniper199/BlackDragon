@@ -43,3 +43,31 @@ When You Wanna Make A Powerfull Recon, You Should Also Look At:
 
 - [x] [Hunter.io](https://hunter.io/) -> For Target Email Searching 
 - [x] [Public-WWW](https://publicwww.com) -> For String Searching In Public Source Codes
+
+## Installation
+
+Simply After Cloning The Repository By Typing :
+
+`git clone https://github.com/Cyber-Guy1/BlackDragon.git` 
+
+Then Open Up The BlackDragon Directory:
+
+`cd BlackDragon/`
+
+After That Give The Execution Permission To The Installation Script And The Tool Script:
+
+`chmod +x install; chmod +x Black-Dragon`
+
+Finally Run The Installation Script:
+
+`./install`
+
+## Tool Using Syntax:
+
+Simply:
+
+`./Black-Dragon example.com`
+
+> Note: DO NOT ADD http:// or https:// In The Domain, The Tool Do This Automatically
+
+Stay Secure ;)
