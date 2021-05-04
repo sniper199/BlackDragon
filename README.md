@@ -68,6 +68,6 @@ Simply:
 
 `./Black-Dragon example.com`
 
-> Note: DO NOT ADD http:// or https:// In The Domain, The Tool Do This Automatically
+> Note: DO NOT Add http:// or https:// In The Domain, The Tool Do This Automatically
 
 Stay Secure ;)
