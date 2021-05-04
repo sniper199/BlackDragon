@@ -1,4 +1,4 @@
-# Black-Dragon
+# Black-Dragon V 1.0.0
 An Adavnced Automation Tool For Web-Recon Developed For Linux Systems
 
 <img src='1620024203280.png' width='70%' height='70%'>
