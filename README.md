@@ -23,3 +23,23 @@ This Is An Automated Tool, So Simply You Give It A Target Then Simply The Tool T
 
 
 <img src='recon.png' width='100%' height='100%'>
+
+So Any Tool Based Recon In This Methodology, I Put It Here In This Automation Tool, But I Prefer To Do So Recon Manually, So First You Should Search Deeply In The IOT Search Engines Like:
+
+- [x] [Shodan.io](https://shodan.io)
+- [x] [Censys.io](https://censys.io)
+- [x] [Zoomeye](https://zoomeye.org)
+
+Also You Should Search In Some FTP Search Engines Like:
+
+- [x] [SearchFTPs](http://searchftps.net/)
+- [x] [Search Archive](http://archie.icm.edu.pl/)
+- [x] [File Searching](http://www.filesearching.com/)  
+- [x] [Free Ware Web](http://www.freewareweb.com/ftpsearch.shtml)
+- [x] [MMNT.ru](https://www.mmnt.ru/int/)
+- [x] [FTP Sites](http://www.ftp-sites.org/)
+
+When You Wanna Make A Powerfull Recon, You Should Also Look At:
+
+- [x] [Hunter.io](https://hunter.io/) -> For Target Email Searching 
+- [x] [Public-WWW](https://publicwww.com) -> For String Searching In Public Source Codes
