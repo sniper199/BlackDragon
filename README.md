@@ -15,4 +15,11 @@ This Tool Works In Linux Systems, Specially In Debian & Debian Based Systems Lik
 4. Debian
 5. Back Box
 
-And Other Debian Based Linux Distro's 
+And Other Debian Based Linux Distro's
+
+## What Is The Best Use For This Tool ?
+
+This Is An Automated Tool, So Simply You Give It A Target Then Simply The Tool Took All The Information & And Save The Results In Ordered Directories & Files, But When You Do The Recon You Just Use This Tool, But Also You Should Do Some Manual Activity, This Mindmap Shows The Whole Operation Of BlackDragon Recon Methodology:
+
+
+<img src='recon.png' width='100%' height='100%'>
