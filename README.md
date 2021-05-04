@@ -118,3 +118,7 @@ Simply:
 Stay Secure ;)
 
 M 💕 N
+
+<hr>
+
+<img src="gplv3-with-text-136x68.png">
