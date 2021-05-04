@@ -80,6 +80,7 @@ When You Wanna Make A Powerfull Recon, You Should Also Look At:
 
 - [x] DNSMap
 - [x] DNSEnum   
+- [x] MassDNS
 
 ## What Coming In The Version 2.0.0
 
@@ -113,3 +114,5 @@ Simply:
 > Note: DO NOT Add http:// or https:// In The Domain, The Tool Do This Automatically
 
 Stay Secure ;)
+
+M 💕 N
