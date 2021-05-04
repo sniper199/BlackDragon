@@ -147,13 +147,14 @@ else
         printf "\n\n[         \e[93mFast Scan Mode Is Enabled ...\e[0m        ]\n\n"
 
         mkdir -p knockpy-fast
+	
         knockpy $domain --no-http -o knockpy-fast
 
     elif [[ $knock == 2 ]]; then
     	
 	mkdir -p kncokpy-deep
-        cd knockpy-deep
-        knockpy $domain --no-http -o knockpy-deep
+
+	knockpy $domain --no-http -o knockpy-deep
     else
         printf "\n\n[ Choise Is Out Of Range ] Exit ...\n\n"
     fi
