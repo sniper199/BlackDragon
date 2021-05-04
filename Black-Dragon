@@ -1,0 +1,875 @@
+#!/bin/bash
+
+cat <<"EOF"
+
+                                         `.-:/+oosssoo+/::-.
+                                    `:oydmNNMMMMMMMMMMMMMNNNmdyo/-`
+                                   -dNMMMMMMMMMMMMMMMMMMMMMMMMMMMNmh+-`
+                                    ........-:/oydNMMMMMMMMMMMMMMMMMMNms:`
+                                           .:os  `.yMMMMMMMMMMMMMMMMMMMMNd+`
+                                         :ymMm/ ``.oMMMMMMMMMMMMMMMMMMMMMMMm/
+                                   ..++yhNMMMmmmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMh.
+                                `/ymNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMs:omd.
+                              .smMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM/  `+y`
+                             /NdoyMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN/   .-
+                            `NMddNMMMMMMNmNMddddmNNMMMMMMMMMMMMMMMMMMMMMMMMMy-
+                            `oddddhyso/-.`.-` ```.-:ohNMMMMMMMMMMMMMMMMMMMMMMNy-
+                              ```     ``..            .+dMMMMMMMMMMMMMMMMMMMMMMNo
+                                  ./ohdmmo```..         `/mMMMMMMMMMMMMMMMMMMMMMMs
+                               .+hNMMMMMMNmmmmm:.....`    .dMMMMMMMMMMMMMMMMMMMMMM-
+                             `omMMNNmmmNNMMMMMMMNmmm+-.    `mMMMMMMMMMMMMMMMMN+:yM/
+                            `hMmy/-.....-:/ohmNMMMMo        +MMMMMMMMMMMMMMMMh  `m`
+                            sMd.             `-sNMMs        -MMMMMMMMMMMMMMMMs  ..
+                            NM+                 .yMN        +MMMMMMMMMMMMMMMM/
+                            NMh`                 `hm       .mMMMMMMMMMMMMMMMm`
+                            sMMy.                 --      :mMMMMMMMMMMMMMMMM/
+                            `dMMNs-`                   `:yMMMMMMMMMMdymMMMN+
+                             .hMMMMds/-.`         `.-+ymMMMMMMMMMMNo` hMMm:
+                               +mMMMMMMNdhyysssyyhdNMMMMMMMMMMMMms.  +Mmo`
+                                `/ymMMMMMMMMMMMMMMMMMMMMMMMMNmh/`   +s:`
+                                   `:ohmNNMMMMMMMMMMMMNNNdy+:`
+                                        .-:/+osssso++/:.`
+
+			          An Automated Tool For Web-Recon
+					Developed By Momen Ali
+					    The CyberGuy
+						v-1.0
+
+
+EOF
+
+#
+
+domain="$1"
+usage() {
+    printf "
+
+------------------------------------
+
+[Usage]:
+
+./Black-Dragon example.com
+
+[+] NOTE: The Domai Without http:// Or https://
+
+[About The Tool]:
+
+Black Dragon Is An Automation Tool For Automate The Web Recon Process With Bash Scripting
+
+[Author]:
+
+[+] Name: Momen Ali
+[+] Nickname: Cyber Guy
+[+] Github: https://www.github.com/Cyber-Guy1
+
+
+------------------------------------
+
+" 1>&2
+    exit 1
+}
+
+printf "\n====================================\n"
+printf "               Banner                  "
+printf "\n====================================\n\n"
+
+printf "[+] \e[91mTarget Domain \e[0m=> $domain\n"
+printf "[+] \e[91mDate \e[0m=> "
+date +'%m-%d-%Y'
+printf "[+] \e[91mCurrent User \e[0m=> "
+echo "$USER"
+
+if [ -z "${domain}" ]; then
+
+    usage
+    exit 1
+
+else
+
+    printf "\n-------------------------------------\n\n"
+
+    date=$(date +'%m-%d-%Y')
+    mkdir -p $domain
+    cd $domain
+    mkdir -p $date
+    cd $date
+    printf "[+] \e[92mCurrent Recon Path:\e[0m => "
+    pwd
+    printf "\n====================================\n\n"
+
+    printf "\n\e[33m====================================\e[0m\n"
+    printf "          \e[33mSubdomain Gathering\e[0m                  "
+    printf "\n\e[33m====================================\e[0m\n\n"
+
+    mkdir -p Sub-Domains/
+
+    mkdir -p Sub-Domains/all-subs/
+
+    mkdir -p Sub-Domains/live-subs/
+
+    cd Sub-Domains/all-subs/
+
+    printf "\n\n---------------------------------------------\n"
+    printf "          \e[33mSubfinder Is Starting ...\e[0m                  "
+    printf "\n---------------------------------------------\n\n"
+
+    subfinder -d $domain -o subfinder.txt
+
+    printf "\n\n---------------------------------------------\n"
+    printf "          \e[33mAsset Finder Is Starting ...\e[0m                  "
+    printf "\n---------------------------------------------\n\n"
+
+    assetfinder $domain | tee assestfinder.txt
+
+    printf "\n\n---------------------------------------------\n"
+    printf "          \e[33mSublist3r Is Starting ...\e[0m                  "
+    printf "\n---------------------------------------------\n\n"
+
+    python3 ~/BlackDragon/BD-Tools/Sublist3r/sublist3r.py -d $domain -v -o sublist3r.txt
+
+    printf "\n\n---------------------------------------------\n"
+    printf "          \e[33mKnockpy Is Starting ...\e[0m                  "
+    printf "\n---------------------------------------------\n\n"
+
+    printf "Choose Scan Type:
+
+[1] Fast Scan
+[2] Deep Scan
+[-] Press Enter To Skip
+
+"
+
+    printf "{$USER}@Black-Dragon: "
+    read knock
+
+    if [[ $knock == 1 ]]; then
+
+        printf "\n\n[         \e[93mFast Scan Mode Is Enabled ...\e[0m        ]\n\n"
+
+        mkdir knockpy-fast
+        knockpy $domain --no-http -o knockpy-fast
+
+    elif [[ $knock == 2 ]]; then
+        cd knockpy-deep
+        knockpy $domain --no-http -o knockpy-deep
+    else
+        printf "\n\n[ Choise Is Out Of Range ] Exit ...\n\n"
+    fi
+
+    printf "\n\n---------------------------------------------\n"
+    printf "  \e[33mGithub Subdomain Gathering Is Starting ...\e[0m                  "
+    printf "\n---------------------------------------------\n\n"
+
+    printf "Do You Have Github Token ?
+
+[1] Yes
+[2] No
+[-] Press Enter To Skip
+
+"
+
+    printf "{$USER}@Black-Dragon: "
+    read token
+
+    if [[ $token == 1 ]]; then
+
+        printf "\n{$USER}@Black-Dragon: Enter Your Github Token: "
+        read token
+
+        python3 ~/BlackDragon/BD-Tools/github-search/github-subdomains.py -d $domain -t $token -v | tee github-subs.txt
+
+    elif [[ $token == 2 ]]; then
+        printf "\n\n\e[31[ No Github Token Provided ] Exiting ...\e[0m\n\n"
+    else
+        printf "\n\n\e[31[ Choise Is Out Of Range ] Exiting ...\e[0m\n\n"
+    fi
+
+    printf "\n\n---------------------------------------------\n"
+    printf "  \e[33m             Amass [intel] ...\e[0m                  "
+    printf "\n---------------------------------------------\n\n"
+
+    printf "Do You Want To Run Amass [intel] Scan [May Take Some Time] ?
+
+[1] Yes
+[2] No
+[-] Press Enter To Skip
+
+"
+
+    printf "{$USER}@Black-Dragon: "
+    read choise
+
+    if [[ $choise == 1 ]]; then
+
+        sudo amass intel -d $domain -whois -o amass-intel.txt
+
+    elif [[ $choise == 2 ]]; then
+
+        printf "\n\n\e[31[ Declined The Amass [Intel] Scanning ] Exiting ...\e[0m \n\n"
+
+    else
+
+        printf "\n\n\e[31[ Choise Is Out Of Range ] Exiting ...\e[0m \n\n"
+
+    fi
+
+    printf "\n\n---------------------------------------------\n"
+    printf "  \e[33m             Amass [enum] ...\e[0m                  "
+    printf "\n---------------------------------------------\n\n"
+
+    printf "Do You Want To Run Amass [enum] Scan [May Take Some Time] ?
+
+[1] Yes
+[2] No
+[-] Press Enter To Skip
+
+"
+
+    printf "{$USER}@Black-Dragon: "
+    read choise
+
+    if [[ $choise == 1 ]]; then
+
+        amass enum -d $domain -o emass-enum.txt
+
+    elif [[ $choise == 2 ]]; then
+
+        printf "\n\n\e[31[ Declined The Amass [enum] Scanning ] Exiting ...\e[0m\n\n"
+
+    else
+
+        printf "\n\n\e[31[ Choise Is Out Of Range ] Exiting ...\e[0m\n\n"
+
+    fi
+
+fi
+
+printf "\n\n---------------------------------------------\n"
+printf "  \e[33m      Live Subdomain Filtering ...\e[0m                  "
+printf "\n---------------------------------------------\n\n"
+
+printf "Do You Want To Filter The Live Subdomains ?
+
+[1] Yes
+[2] No
+[-] Press Enter To Skip
+
+"
+
+printf "{$USER}@Black-Dragon: "
+read choise
+
+if [[ $choise == 1 ]]; then
+
+    cat * | httprobe | tee all_live
+    cat all_live | sort -u | tee live_subs.txt
+    mv live_subs.txt ../live-subs/
+
+elif [[ $choise == 2 ]]; then
+
+    printf "\n\n\e[31[ Declined The Live Subdomain Filtering ] Exiting ...\e[0m\n\n"
+
+else
+
+    printf "\n\n\e[31[ Choise Is Out Of Range ] Exiting ...\e[0m\n\n"
+
+fi
+
+printf "\n\e[33m====================================\e[0m\n"
+printf "     \e[33mDNS Information Gathering\e[0m                  "
+printf "\n\e[33m====================================\e[0m\n\n"
+
+cd ../../
+
+mkdir -p DNS-Infos
+
+cd DNS-Infos
+
+printf "\n\n---------------------------------------------\n"
+printf "  \e[33m          DNSMap Is Starting ...\e[0m                  "
+printf "\n---------------------------------------------\n\n"
+
+dnsmap $domain -r DNSMap.txt
+
+printf "\n\n---------------------------------------------\n"
+printf "  \e[33m          DNSEnum Is Starting ...\e[0m                  "
+printf "\n---------------------------------------------\n\n"
+
+dnsenum --dnsserver 8.8.8.8 -w --subfile DNSEnum.txt --private -v $domain | tee DNSEnum-All.txt
+
+printf "\n\n---------------------------------------------\n"
+printf "  \e[33m          gobuster Is Starting ...\e[0m                  "
+printf "\n---------------------------------------------\n\n"
+
+printf "
+    
+Word List Selecting:
+
+[1] Default
+[2] Custom
+    
+"
+printf "\n{$USER}@Black-Dragon: => "
+read choose_WL
+
+if [[ $choose_WL == 1 ]]; then
+
+    gobuster dns -d $domain -w /usr/share/wordlists/dirb/common.txt -o gobuster-DNS-D-$domain.txt --wildcard
+
+elif [[ $choose_WL == 2 ]]; then
+    printf "\n{$USER}@Black-Dragon: Enter The Full Path Of The Wordlist => " read wordlist
+
+    if [[ -z "${wordlist}" ]]; then
+
+        echo "\n\n\e[31m[ No Word List Inserted, Exiting .... ]\e[0m"
+
+    else
+
+        gobuster dns -d $domain -w $wordlist -o gobuster-DNS-C-$domain.txt --wildcard
+
+    fi
+fi
+
+printf "\n\e[33m====================================\e[0m\n"
+printf "   \e[33mEndpoints Gathering Starting\e[0m                  "
+printf "\n\e[33m====================================\e[0m\n\n"
+
+cd ../
+mkdir -p Endpoints
+cd Endpoints
+
+printf "\n\n---------------------------------------------\n"
+printf "  \e[33m       Waybackurls Is Starting ...\e[0m                  "
+printf "\n---------------------------------------------\n\n"
+
+printf "Do You Want To Include The Subdomains Too ?
+
+[1] Yes
+[2] No
+[-] Press Enter To Skip
+
+"
+
+printf "{$USER}@Black-Dragon: "
+read choise
+
+if [[ $choise == 1 ]]; then
+
+    waybackurls $domain | tee waybackurls-with-subs.txt
+
+elif [[ $choise == 2 ]]; then
+
+    waybackurls $domain -no-subs | tee waybackurls.txt
+
+else
+
+    printf "\n\n\e[31m[ Choise Is Out Of Range ] Exiting ...\e[0m\n\n"
+
+fi
+
+printf "\n\n---------------------------------------------\n\n"
+
+printf "Do You Want To Run Detaild Wayback Scan [Not Always Give Detaild Data]?
+
+[1] Yes
+[2] No
+[-] Press Enter To Skip
+
+"
+
+printf "{$USER}@Black-Dragon: "
+read choise
+
+if [[ $choise == 1 ]]; then
+
+    waybackurls $domain -dates -get-versions | tee waybackurls-detaild.txt
+
+elif [[ $choise == 2 ]]; then
+
+    printf "\n\n[ Continue Recon .... ]\n\n"
+
+else
+
+    printf "\n\n\e[31m[ Choise Is Out Of Range ] Exiting ...\e[0m\n\n"
+
+fi
+
+printf "\n\n---------------------------------------------\n"
+printf "  \e[33m     github-endpoints Is Starting ...\e[0m                  "
+printf "\n---------------------------------------------\n\n"
+
+printf "Do You Have Github Token ?
+
+[1] Yes
+[2] No
+[-] Press Enter To Skip
+
+"
+
+printf "{$USER}@Black-Dragon: "
+read token
+
+if [[ $token == 1 ]]; then
+
+    printf "\n{$USER}@Black-Dragon: Enter Your Github Token: "
+    read token
+
+    python3 ~/BlackDragon/BD-Tools/github-search/github-endpoints.py -d $domain -t $token -v | tee github-endpoints.txt
+
+elif [[ $token == 2 ]]; then
+    printf "\n\n\e[31m[ No Github Token Provided ] Exiting ...\e[0m\n\n"
+else
+    printf "\n\n\e[31m[ Choise Is Out Of Range ] Exiting ...\e[0m\n\n"
+fi
+
+printf "\n\e[33m====================================\e[0m\n"
+printf "   \e[33mFuzzing Operation Starting\e[0m                  "
+printf "\n\e[33m====================================\e[0m\n\n"
+
+printf "\n\n---------------------------------------------\n"
+printf "  \e[33m       gobuster Is Starting ...\e[0m                  "
+printf "\n---------------------------------------------\n\n"
+
+printf "What Do You Wanna Fuzz ?
+
+[1] $domain
+[2] Other Target
+[-] Press Enter To Skip
+
+"
+
+printf "{$USER}@Black-Dragon: "
+read choose_Target
+
+if [[ $choose_Target == 1 ]]; then
+
+    cd ../
+    mkdir -p Fuzzing-Results/
+    cd Fuzzing-Results/
+
+    printf "
+
+Word List Selecting:
+
+[1] Custom
+[2] Default
+
+"
+    printf "{$USER}@Black-Dragon: "
+    read choose_WL
+
+    if [[ $choose_WL == 1 ]]; then
+
+        printf "\n{$USER}@Black-Dragon: Enter The Full Path Of The Wordlist => "
+        read wordlist
+
+        if [[ -z "${wordlist}" ]]; then
+
+            printf "\n\n\e[31m[ No Word List Provided .... Exiting ]\e[0m\n\n"
+
+        else
+
+            printf "
+
+Select Your Target: 
+
+[+] Domain => $domain
+[+] Wordlist => $wordlist
+            
+"
+
+            gobuster dir -u $domain -w $wordlist -o gobuster-DF-C.txt -q --wildcard
+        fi
+
+    elif
+        [[ $choose_WL == 2 ]]
+    then
+
+        gobuster dir -u $domain -w ~/BlackDragon/BD-Tools/SecLists/Discovery/Web-Content/common.txt -q -o gobuster-DF-D.txt --wildcard
+
+    else
+
+        printf "\n\n\e[31m[ Invalid Option Exiting .... ]\e[0m\n\n"
+    fi
+
+elif
+
+    [[ $choose_Mode == 2 ]]
+then
+
+    printf "
+
+Word List Selecting:
+
+[1] Custom
+[2] Default
+
+"
+    printf "{$USER}@Black-Dragon: "
+    read choose_WL
+
+    if [[ $choose_WL == 1 ]]; then
+
+        printf "\n{$USER}@Black-Dragon: Enter The Full Path Of The Wordlist => "
+        read wordlist
+
+        if [[ -z "${wordlist}" ]]; then
+
+            printf "\n\n\e[31m[ No Word List Selected .... Exiting ]\e[0m\n\n"
+
+        else
+
+            printf "
+
+[+] Domain => $domain
+[+] Wordlist => $wordlist
+            
+"
+
+            gobuster dns -d $domain -w $wordlist -o gobuster-DNS-C.txt -q --wildcard
+        fi
+
+    fi
+
+fi
+
+if [[ $choose_Target == 2 ]]; then
+
+    cd ../
+    mkdir -p Fuzzing-Results/
+    cd Fuzzing-Results/
+
+    printf "\n{$USER}@Black-Dragon: Enter Your Target Here => "
+    read target
+
+    if [[ -z "${target}" ]]; then
+
+        echo "\n\n\e[31m[ No Domain Entered, Exiting .... ]\e[0m\n\n"
+
+    else
+
+        printf "
+    
+Word List Selecting:
+
+[1] Default
+[2] Custom
+    
+"
+        printf "\n{$USER}@Black-Dragon: => "
+        read choose_WL
+    fi
+    if [[ $choose_WL == 1 ]]; then
+
+        gobuster dir -u $domain -w ~/BlackDragon/BD-Tools/SecLists/Discovery/Web-Content/common.txt -q -o gobuster-DF-D.txt --wildcard gobuster-DNS-C.txt -q --wildcard
+
+    elif [[ $choose_WL == 2 ]]; then
+        printf "\n{$USER}@Black-Dragon: Enter The Full Path Of The Wordlist => " read wordlist
+
+        if [[ -z "${wordlist}" ]]; then
+
+            echo "\n\n\e[31m[ No Word List Inserted, Exiting .... ]\e[0m"
+
+        else
+
+            gobuster dir -u $domain -w $wordlist -q -o gobuster-DF-D.txt --wildcard gobuster-DNS-C.txt -q --wildcard
+
+        fi
+    fi
+fi
+
+printf "\n\n---------------------------------------------\n"
+printf "  \e[33m       dirsearch Is Starting ...\e[0m                  "
+printf "\n---------------------------------------------\n\n"
+
+cd ../
+mkdir -p Fuzzing-Results/
+cd Fuzzing-Results/
+
+printf "
+
+Select Your Target: 
+
+[1] $domain
+[2] Custom
+            
+"
+printf "\n{$USER}@Black-Dragon: => "
+read choose_Target
+
+if [[ $choose_Target == 1 ]]; then
+
+    printf "
+
+Select A Wordlist:
+
+[1] Default
+[2] Custom
+
+"
+
+    printf "\n{$USER}@Black-Dragon: => "
+    read wordlist
+
+    if [[ $wordlist == 1 ]]; then
+
+        sudo dirsearch -u $domain --random-agent --plain-text ${pwd}dirsearch-$domain.txt
+
+    elif [[ $wordlist == 2 ]]; then
+
+        printf "\n{$USER}@Black-Dragon: Enter The Full Wordlist Path => "
+        read wordlist
+
+        if [[ -z "${wordlist}" ]]; then
+
+            echo "\n\n\e[31m[ No Wordlist Inserted, Exiting .... ]\e[0m\n\n"
+
+        else
+
+            sudo dirsearch -u $domain --random-agent -w $wordlist --plain-text ${pwd}dirsearch-$domain.txt
+
+        fi
+    fi
+
+fi
+
+if [[ $choose_Target == 2 ]]; then
+
+    printf "\n{$USER}@Black-Dragon: Enter Your Target Here => "
+    read target
+
+    if [[ -z "${target}" ]]; then
+        printf "\n\n\e[31m[ No Domain Entered, Exiting ... ]\e[0m"
+    else
+
+        printf "
+
+Select A Wordlist:
+
+[1] Default
+[2] Custom
+
+"
+
+        printf "\n{$USER}@Black-Dragon: => "
+        read wordlist
+
+        if [[ $wordlist == 1 ]]; then
+
+            sudo dirsearch -u $target --random-agent --plain-text ${pwd}dirsearch-$target.txt
+
+        elif [[ $wordlist == 2 ]]; then
+
+            printf "\n{$USER}@Black-Dragon: Enter The Full Wordlist Path => "
+            read wordlist
+
+            if [[ -z "${wordlist}" ]]; then
+
+                echo "\n\n\e[31m[ No Wordlist Inserted, Exiting .... ]\n\n\e[0m"
+
+            else
+
+                sudo dirsearch -u $target --random-agent -w $wordlist --plain-text ${pwd}dirsearch-$target.txt
+
+            fi
+        fi
+
+    fi
+
+fi
+
+printf "\n\n---------------------------------------------\n"
+printf "  \e[33m        dirb Is Starting ...\e[0m                  "
+printf "\n---------------------------------------------\n\n"
+
+cd ../
+mkdir -p Fuzzing-Results/
+cd Fuzzing-Results/
+
+printf "
+
+Select Your Target: 
+
+[1] $domain
+[2] Custom
+            
+"
+printf "\n{$USER}@Black-Dragon: => "
+read choose_Target
+
+if [[ $choose_Target == 1 ]]; then
+
+    printf "
+
+Select A Wordlist:
+
+[1] Default
+[2] Custom
+
+"
+
+    printf "\n{$USER}@Black-Dragon: => "
+    read wordlist
+
+    if [[ $wordlist == 1 ]]; then
+
+        dirb http://$domain -o dirb-D-$domain.txt -f
+
+    elif [[ $wordlist == 2 ]]; then
+
+        printf "\n{$USER}@Black-Dragon: Enter The Full Wordlist Path => "
+        read wordlist
+
+        if [[ -z "${wordlist}" ]]; then
+
+            echo "\n\n\e[31m[ No Wordlist Inserted, Exiting .... ]\e[0m\n\n"
+
+        else
+
+            dirb http://$domain $wordlist -o dirb-C-$domain.txt -f
+
+        fi
+    fi
+
+fi
+
+if [[ $choose_Target == 2 ]]; then
+
+    printf "\n{$USER}@Black-Dragon: Enter The Domain => "
+    read target
+
+    if [[ -z "${target}" ]]; then
+
+        printf "\n\n\e[31m[ No Domain Entered, Exiting ... ]\e[0m."
+    else
+
+        printf "
+
+Select A Wordlist:
+
+[1] Default
+[2] Custom
+
+"
+
+        printf "\n{$USER}@Black-Dragon: => "
+        read wordlist
+
+        if [[ $wordlist == 1 ]]; then
+
+            dirb http://$domain -o dirb-D-$domain.txt -f
+
+        elif [[ $wordlist == 2 ]]; then
+
+            printf "\n{$USER}@Black-Dragon: Enter The Full Wordlist Path => "
+            read wordlist
+
+            if [[ -z "${wordlist}" ]]; then
+
+                echo "\n\n\e[31m[ No Wordlist Inserted, Exiting .... ]\e[0m\n\n"
+
+            else
+
+                dirb http://$domain $wordlist -o dirb-C-$domain.txt -f
+
+            fi
+        fi
+
+    fi
+
+fi
+
+printf "\n\e[33m====================================\e[0m\n"
+printf "      \e[33mPort Scanning Starting\e[0m                  "
+printf "\n\e[33m====================================\e[0m\n\n"
+
+printf "
+
+Choose Your Target:
+
+[1] $domain
+[2] Other
+[-] Press Enter To Skip 
+
+"
+
+cd ../
+mkdir -p Port-Scanning
+
+cd Port-Scanning
+
+printf "\n{$USER}@Black-Dragon: => "
+read choose_Target
+
+if [[ $choose_Target == 1 ]]; then
+
+    printf "
+    
+Choose Scanning Mode:
+
+[1] Sleath Scan [Most Common 1000 Port]
+[2] OS & Services Scanning [Most Common 1000 Port] 
+[3] OS, Version, & Script Scannin & Traceroute [Most Common 1000 Port]
+    
+"
+
+    printf "\n\n{$USER}@Black-Dragon: > "
+    read choose_Mode
+
+    if [[ $choose_Mode == 1 ]]; then
+
+        sudo nmap -sS $domain -oG nmap-SS-$domain.txt
+
+    elif [[ $choose_Mode == 2 ]]; then
+
+        sudo nmap -sS -O -sV $domain -oG nmap-OSV-$domain.txt
+
+    elif [[ $choose_Mode == 3 ]]; then
+
+        sudo nmap -sS -A $domain -oG nmap-OVST-$domain.txt
+
+    fi
+
+fi
+
+if [[ $choose_Target == 2 ]]; then
+
+    printf "\n\n{$USER}@Black-Dragon: Target => "
+    read target
+
+    printf "
+    
+Choose Scanning Mode:
+
+[1] Sleath Scan [Most Common 1000 Port]
+[2] OS & Services Scanning [Most Common 1000 Port] 
+[3] OS, Version, & Script Scannin & Traceroute [Most Common 1000 Port]
+    
+"
+
+    printf "\n\n{$USER}@Black-Dragon: > "
+    read choose_Mode
+
+    if [[ $choose_Mode == 1 ]]; then
+
+        sudo nmap -sS $target -oG nmap-SS-$target.txt
+
+    elif [[ $choose_Mode == 2 ]]; then
+
+        sudo nmap -sS -O -sV $target -oG nmap-OSV-$target.txt
+
+    elif [[ $choose_Mode == 3 ]]; then
+
+        sudo nmap -sS -A $target -oG nmap-OVST-$target.txt
+
+    fi
+
+fi
+
+if [[ -z "${choose_Traget}" ]]; then
+
+    printf "\n\n\e[31m[ Out Of Range Choise ]\e[0m"
+
+fi
+
+printf "\n\n\n\e[96m[ Black Dragon Flamed The Application ;) ]\e[0m \n\n\n"

@@ -1,0 +1,338 @@
+#!/bin/bash
+
+cat <<"EOF"
+
+                                         `.-:/+oosssoo+/::-.                                                  
+                                    `:oydmNNMMMMMMMMMMMMMNNNmdyo/-`                                           
+                                   -dNMMMMMMMMMMMMMMMMMMMMMMMMMMMNmh+-`                                       
+                                    ........-:/oydNMMMMMMMMMMMMMMMMMMNms:`                                    
+                                           .:os  `.yMMMMMMMMMMMMMMMMMMMMNd+`                                  
+                                         :ymMm/ ``.oMMMMMMMMMMMMMMMMMMMMMMMm/                                 
+                                   ..++yhNMMMmmmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMh.                               
+                                `/ymNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMs:omd.                              
+                              .smMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM/  `+y`                             
+                             /NdoyMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN/   .-                             
+                            `NMddNMMMMMMNmNMddddmNNMMMMMMMMMMMMMMMMMMMMMMMMMy-                                
+                            `oddddhyso/-.`.-` ```.-:ohNMMMMMMMMMMMMMMMMMMMMMMNy-                              
+                              ```     ``..            .+dMMMMMMMMMMMMMMMMMMMMMMNo                             
+                                  ./ohdmmo```..         `/mMMMMMMMMMMMMMMMMMMMMMMs                            
+                               .+hNMMMMMMNmmmmm:.....`    .dMMMMMMMMMMMMMMMMMMMMMM-                           
+                             `omMMNNmmmNNMMMMMMMNmmm+-.    `mMMMMMMMMMMMMMMMMN+:yM/                           
+                            `hMmy/-.....-:/ohmNMMMMo        +MMMMMMMMMMMMMMMMh  `m`                           
+                            sMd.             `-sNMMs        -MMMMMMMMMMMMMMMMs  ..                            
+                            NM+                 .yMN        +MMMMMMMMMMMMMMMM/                                
+                            NMh`                 `hm       .mMMMMMMMMMMMMMMMm`                                
+                            sMMy.                 --      :mMMMMMMMMMMMMMMMM/                                 
+                            `dMMNs-`                   `:yMMMMMMMMMMdymMMMN+                                  
+                             .hMMMMds/-.`         `.-+ymMMMMMMMMMMNo` hMMm:                                   
+                               +mMMMMMMNdhyysssyyhdNMMMMMMMMMMMMms.  +Mmo`                                    
+                                `/ymMMMMMMMMMMMMMMMMMMMMMMMMNmh/`   +s:`                                      
+                                   `:ohmNNMMMMMMMMMMMMNNNdy+:`                                                
+                                        .-:/+osssso++/:.`                                                                                                           
+                                                                                                                        
+			          An Automated Tool For Web-Recon
+					Developed By Momen Ali
+					    The CyberGuy                                                                                                                        
+						v-1.0
+
+					 [Installation Script]
+
+EOF
+
+sleep 2
+
+# Installing The Requiremnets For This Tool
+
+printf "\n\n\e[5m############## Installing Requiremnts ###############\e[25m\n\n"
+
+printf "\n\n\e[7m Updating Repositories \e[27m\n\n"
+
+sudo apt update
+
+printf "\n\n\e[7m Installing Updates \e[27m\n\n"
+
+sudo apt full-upgrade -y
+
+printf "\n\n\e[7m Cleaning Environment \e[27m\n\n"
+
+sudo apt autoremove -y
+
+printf "\n\n"
+
+sudo apt clean
+
+printf "\n\n"
+
+sudo apt autoclean
+
+printf "\n\n\e[7m Instlling git \e[27m\n\n"
+
+sudo apt install git -y
+
+printf "\n\n\e[7m Installing Python 3 \e[27m\n\n"
+
+sudo apt install python3 -y
+
+printf "\n\n\e[7m Installing Python 3 PIP \e[27m\n\n"
+
+sudo apt install python3-pip -y
+
+printf "\n\n\e[7m Installing Python 2 \e[27m\n\n"
+
+sudo apt install python2 -y
+
+printf "\n\n\e[7m Installing Go Lang 1.16.3 \e[27m\n\n"
+
+#wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz;
+
+printf "\n\n"
+
+#sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz;
+
+printf "\n\n"
+
+#export PATH=$PATH:/usr/local/go/bin;
+
+printf "\n\e[31mGo Version:  \e[0m"
+
+go version
+
+printf "\n\n\e[7m Instlling Essential Libraries \e[27m\n\n"
+
+sudo apt install libcurl4-openssl-dev -y
+
+printf "\n\n"
+
+sudo apt install libssl-dev -y
+
+printf "\n\n"
+
+sudo apt install libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential libgmp-dev zlib1g-dev -y
+
+printf "\n\n"
+
+sudo apt install build-essential libssl-dev libffi-dev python-dev -y
+
+printf "\n\n"
+
+sudo apt install libldns-dev -y
+
+printf "\n\n\e[7m Instlling Addintional Packages \e[27m\n\n"
+
+sudo apt install jq -y
+
+printf "\n\n"
+
+sudo apt install ruby-full -y
+
+printf "\n\n"
+
+sudo apt install python3-setuptools -y
+
+printf "\n\n"
+
+sudo apt-get install python3-dnspython -y
+
+printf "\n\n"
+
+sudo apt-get install rename -y
+
+printf "\n\n"
+
+sudo apt install findutils -y
+
+printf "\n\n\e[7m Instlling make \e[27m\n\n"
+
+sudo apt install make -y
+
+printf "\n\n\e[5m############## Installing Tools ###############\e[25m\n\n"
+
+mkdir -p BD-Tools/
+
+cd BD-Tools/
+
+printf "\n\n\e[7m Installing awscli \e[27m\n\n"
+
+sudo apt install awscli -y
+
+printf "\n\n\e[7m Installing aquatone \e[27m\n\n"
+
+go get github.com/michenriksen/aquatone
+
+printf "\n\n\e[7m Installing chromium \e[27m\n\n"
+
+sudo apt install chromium -y
+
+printf "\n\n\e[7m Installing JSParser \e[27m\n\n"
+
+git clone https://github.com/nahamsec/JSParser.git
+
+cd JSParser*
+
+sudo python setup.py install
+
+cd ~/BlackDragon/BD-Tools/
+
+printf "\n\n\e[7m Installing Sublist3r \e[27m\n\n"
+
+git clone https://github.com/aboul3la/Sublist3r.git
+
+cd Sublist3r*
+
+pip install -r requirements.txt
+
+cd ~/BlackDragon/BD-Tools/
+
+printf "\n\n\e[7m Installing teh_s3_bucketeers \e[27m\n\n"
+
+git clone https://github.com/tomdev/teh_s3_bucketeers.git
+
+cd ~/BlackDragon/BD-Tools/
+
+printf "\n\n\e[7m Installing wpscan \e[27m\n\n"
+
+git clone https://github.com/wpscanteam/wpscan.git
+
+cd wpscan*
+
+sudo gem install bundler && bundle install --without test
+
+cd ~/BlackDragon/BD-Tools/
+
+printf "\n\n\e[7m Installing dirsearch \e[27m\n\n"
+
+git clone https://github.com/maurosoria/dirsearch.git
+
+cd ~/BlackDragon/BD-Tools/dirsearch/
+
+sudo python3 setup.py install
+
+cd ~/BlackDragon/BD-Tools/
+
+printf "\n\n\e[7m Installing lazys3 \e[27m\n\n"
+
+git clone https://github.com/nahamsec/lazys3.git
+
+cd ~/BlackDragon/BD-Tools/
+
+printf "\n\n\e[7m Installing Virtual Host Discovery \e[27m\n\n"
+
+git clone https://github.com/jobertabma/virtual-host-discovery.git
+
+cd ~/BlackDragon/BD-Tools/
+
+printf "\n\n\e[7m Installing SQLMap \e[27m\n\n"
+
+git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
+
+cd ~/BlackDragon/BD-Tools/
+
+printf "\n\n\e[7m Installing Knockpy \e[27m\n\n"
+
+git clone https://github.com/guelfoweb/knock.git
+
+cd ~/BlackDragon/BD-Tools/
+
+printf "\n\n\e[7m Installing nmap \e[27m\n\n"
+
+sudo apt install nmap -y
+
+printf "\n\n\e[7m Installing Massdns \e[27m\n\n"
+
+git clone https://github.com/blechschmidt/massdns.git
+
+cd ~/BlackDragon/BD-Tools/
+
+make
+
+cd ~/BlackDragon/BD-Tools/
+
+printf "\n\n\e[7m Installing ASN Lookup \e[27m\n\n"
+
+git clone https://github.com/yassineaboukir/asnlookup.git
+
+cd ~/BD-Tools/asnlookup
+
+pip install -r requirements.txt
+
+cd ~/BlackDragon/BD-Tools/
+
+printf "\n\n\e[7m Installing HTTProbe \e[27m\n\n"
+
+go get -u github.com/tomnomnom/httprobe
+
+printf "\n\n\e[7m Installing unfurl \e[27m\n\n"
+
+go get -u github.com/tomnomnom/unfurl
+
+printf "\n\n\e[7m Installing Waybackurls \e[27m\n\n"
+
+go get github.com/tomnomnom/waybackurls
+
+printf "\n\n\e[7m Downloading SecLists \e[27m\n\n"
+
+cd ~/BlackDragon/BD-Tools/
+
+git clone https://github.com/danielmiessler/SecLists.git
+
+printf "\n\n\e[7m Installing amass \e[27m\n\n"
+
+wget https://github.com/OWASP/Amass/releases/download/v3.12.3/amass_linux_amd64.zip
+
+unzip amass_linux_amd64.zip
+
+mv amass_linux_amd64/ amass/
+
+cd amass/
+
+sudo mv amass /usr/bin/
+
+printf "\n\n\e[7m Installing assetfinder \e[27m\n\n"
+
+go get -u github.com/tomnomnom/assetfinder
+
+printf "\n\n\e[7m Installing Knockpy \e[27m\n\n"
+
+git clone https://github.com/guelfoweb/knock.git
+
+cd knock/
+
+sudo python3 setup.py install
+
+printf "\n\n\e[7m Installing Github-Search \e[27m\n\n"
+
+git clone https://github.com/gwen001/github-search.git
+
+printf "\n\n\e[7m Installing DNSMap \e[27m\n\n"
+
+git clone https://gitlab.com/kalilinux/packages/dnsmap.git
+
+cd dnsmap
+
+make
+
+printf "\n\n\e[7m Installing DNSEnum \e[27m\n\n"
+
+git clone https://gitlab.com/kalilinux/packages/dnsenum.git
+
+cd dnsenum
+
+make
+
+printf "\n\n\e[7m Installing gobuster \e[27m\n\n"
+
+go get github.com/OJ/gobuster
+
+printf "\n\n\e[7m Installing dirb \e[27m\n\n"
+
+git clone https://gitlab.com/kalilinux/packages/dirb.git
+
+cd dirb/
+
+chmod +x configure
+
+./configure
+
+make
+
+printf "\n\n\n \e[96m[Tools & Requirements Installed]\e[0m \n\n\n"
